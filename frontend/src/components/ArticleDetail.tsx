@@ -41,7 +41,7 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <Link href="/" className="inline-block mb-6 text-blue-600 hover:underline">
+      <Link href="/home-page" className="inline-block mb-6 text-blue-600 hover:underline">
         ← Retour aux articles
       </Link>
 
