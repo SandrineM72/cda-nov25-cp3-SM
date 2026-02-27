@@ -1,15 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useGetArticleQuery } from "@/graphql/generated/schema";
+import { useRouter } from "next/router";
+import { useDeleteArticleMutation, useGetArticleQuery } from "@/graphql/generated/schema";
 
 interface ArticleDetailProps {
   articleId: number;
 }
 
 export default function ArticleDetail({ articleId }: ArticleDetailProps) {
+  const router = useRouter();
   const { loading, error, data } = useGetArticleQuery({
     variables: { id: articleId },
   });
+
+  const [deleteArticle, { loading: deleteLoading }] = useDeleteArticleMutation();
+
+  const handleDelete = async () => {
+    const confirmed = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deleteArticle({
+        variables: { id: articleId },
+      });
+
+      alert("Article supprimé avec succès !");
+      router.push("/");
+    } catch (err) {
+      console.error("Erreur lors de la suppression :", err);
+      alert("Erreur lors de la suppression de l'article.");
+    }
+  };
 
   if (loading) {
     return <p className="text-center py-8">Chargement de l'article...</p>;
@@ -41,7 +65,7 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <Link href="/home-page" className="inline-block mb-6 text-blue-600 hover:underline">
+      <Link href="/" className="inline-block mb-6 text-blue-600 hover:underline">
         ← Retour aux articles
       </Link>
 
@@ -61,8 +85,19 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
         )}
       </div>
 
-      <div className="prose prose-lg max-w-none">
+      <div className="prose prose-lg max-w-none mb-8">
         <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{article.body}</p>
+      </div>
+
+      <div className="flex justify-end pt-6 border-t">
+        <button
+          type="button"
+          onClick={handleDelete}
+          disabled={deleteLoading}
+          className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          {deleteLoading ? "Suppression..." : "Supprimer l'article"}
+        </button>
       </div>
     </div>
   );
