@@ -1,0 +1,7 @@
+query SearchArticles($title: String) {
+  articles(title: $title) {
+    id
+    title
+    mainPictureUrl
+  }
+}
