@@ -22,6 +22,7 @@ export default function SearchInput() {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           className="flex-1 outline-none bg-transparent"
+          aria-label="Rechercher"
         />
         <button
           type="submit"

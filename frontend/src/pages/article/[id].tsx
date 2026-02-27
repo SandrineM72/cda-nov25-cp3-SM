@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import ArticleDetail from "@/components/ArticleDetail";
 import Layout from "@/components/Layout-component";
@@ -15,8 +16,14 @@ export default function ArticlePage() {
   }
 
   return (
-    <Layout>
-      <ArticleDetail articleId={Number(id)} />
-    </Layout>
+    <>
+      <Head>
+        <title>Dev Blog - Article</title>
+        <meta name="description" content="Les derniers articles du blog" />
+      </Head>
+      <Layout>
+        <ArticleDetail articleId={Number(id)} />
+      </Layout>
+    </>
   );
 }

@@ -26,7 +26,7 @@ export default function Home() {
                   <div className="relative w-full h-48">
                     <Image
                       src={article.mainPictureUrl}
-                      alt={article.title}
+                      alt="illustration"
                       fill
                       className="object-cover"
                     />

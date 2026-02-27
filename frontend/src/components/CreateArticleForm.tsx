@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useCreateArticleMutation, useGetCategoriesQuery } from "@/graphql/generated/schema";
 
 export default function CreateArticleForm() {
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [mainPictureUrl, setMainPictureUrl] = useState("");
@@ -66,7 +64,6 @@ export default function CreateArticleForm() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6">
-        {/* Titre */}
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 font-medium mb-2">
             Titre *
@@ -82,7 +79,6 @@ export default function CreateArticleForm() {
           />
         </div>
 
-        {/* Catégorie */}
         <div className="mb-4">
           <label htmlFor="category" className="block text-gray-700 font-medium mb-2">
             Catégorie *
@@ -103,7 +99,6 @@ export default function CreateArticleForm() {
           </select>
         </div>
 
-        {/* URL de l'image */}
         <div className="mb-4">
           <label htmlFor="mainPictureUrl" className="block text-gray-700 font-medium mb-2">
             URL de l'image principale *
@@ -119,7 +114,6 @@ export default function CreateArticleForm() {
           />
         </div>
 
-        {/* Corps de l'article */}
         <div className="mb-6">
           <label htmlFor="body" className="block text-gray-700 font-medium mb-2">
             Contenu de l'article *
@@ -135,14 +129,12 @@ export default function CreateArticleForm() {
           />
         </div>
 
-        {/* Messages d'erreur */}
         {error && (
           <div className="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
             Erreur : {error.message}
           </div>
         )}
 
-        {/* Boutons */}
         <div className="flex gap-4">
           <button
             type="submit"

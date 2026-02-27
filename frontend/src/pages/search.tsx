@@ -1,12 +1,11 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout-component";
-import SearchResults from "@/components/SearchResults";
 
 export default function SearchPage() {
   const router = useRouter();
   const { q } = router.query;
 
-  // Tant que le routeur n'a pas récupéré le paramètre
   if (!q || typeof q !== "string") {
     return (
       <Layout>
@@ -16,8 +15,14 @@ export default function SearchPage() {
   }
 
   return (
-    <Layout>
-      <SearchResults searchQuery={q} />
-    </Layout>
+    <>
+      <Head>
+        <title>Dev Blog - Recherche</title>
+        <meta name="description" content="Les derniers articles du blog" />
+      </Head>
+      <Layout>
+        <SearchPage />
+      </Layout>
+    </>
   );
 }

@@ -71,7 +71,12 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
 
       {article.mainPictureUrl && (
         <div className="relative w-full h-64 md:h-96 mb-6 rounded-lg overflow-hidden">
-          <Image src={article.mainPictureUrl} alt={article.title} fill className="object-cover" />
+          <Image
+            src={article.mainPictureUrl}
+            alt="image d'illustration"
+            fill
+            className="object-cover"
+          />
         </div>
       )}
 
