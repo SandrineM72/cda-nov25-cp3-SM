@@ -1,18 +1,9 @@
-import Link from "next/link";
-import type React from "react";
-
 export default function Header() {
   return (
-    <header>
-      <nav>
-        <Link href="/">
-          <h1>Dev Blog</h1>
-        </Link>
-        <ul>
-          <li>
-            <Link href="/">Accueil</Link>
-          </li>
-        </ul>
+    <header className="bg-white shadow-md">
+      <nav className="container mx-auto px-4 py-4">
+        <h1 className="text-2xl font-bold text-center">Dev Blog</h1>
+        <p className="flex justify-center mt-4">Accueil</p>
       </nav>
     </header>
   );
