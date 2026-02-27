@@ -1,0 +1,13 @@
+query GetArticles($limit: Float) {
+  articles(limit: $limit) {
+    id
+    title
+    body
+    mainPictureUrl
+    createdAt
+    category {
+      id
+      name
+    }
+  }
+}
